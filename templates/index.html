@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biofeedback Social Feed</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div id="overlay">
+        <button id="start-btn">DÉMARRER L'EXPÉRIENCE</button>
+    </div>
+
+    <div id="status">
+        <div class="sensor-box">
+            <span class="label-tech">EDA (Delta)</span>
+            <span id="eda-val" class="sensor-val" style="color: #00ff88;">0</span>
+        </div>
+        <div class="sensor-box">
+            <span class="label-tech">PZT (Delta)</span>
+            <span id="pzt-val" class="sensor-val" style="color: #00d4ff;">0</span>
+        </div>
+        <div class="sensor-box">
+            <span class="label-tech">PPG (Delta)</span>
+            <span id="ppg-val" class="sensor-val" style="color: #ff007f;">0</span>
+        </div>
+        <hr style="border-color: #333; width: 100%; margin: 10px 0;">
+        <div class="sensor-box">
+            <span class="label-tech">RYTHME CARDIAQUE</span>
+            <span id="ppg-bpm" class="sensor-val" style="color: white;">-- BPM</span> 
+        </div>
+    </div>
+
+    <div id="graphs-container">
+        <div class="graph-box"><canvas id="eda-chart"></canvas></div>
+        <div class="graph-box"><canvas id="pzt-chart"></canvas></div>
+        <div class="graph-box"><canvas id="ppg-chart"></canvas></div>
+        
+        <div class="graph-box" style="border-color: #ffaa00;">
+            <canvas id="stress-chart"></canvas>
+        </div>
+    </div>
+
+    <div id="feed">
+        <div class="video-card">
+            <video src="{{ url_for('static', filename='assets/videos/1.mp4') }}" loop playsinline></video>
+            <div class="video-label">Contenu Réseaux Sociaux 📱</div>
+        </div>
+        <div class="video-card">
+            <video src="{{ url_for('static', filename='assets/videos/6.mp4') }}" loop playsinline></video>
+            <div class="video-label">Contenu Réseaux Sociaux 📱</div>
+        </div>
+        <div class="video-card">
+            <video src="{{ url_for('static', filename='assets/videos/2.mp4') }}" loop playsinline></video>
+            <div class="video-label">Contenu Réseaux Sociaux 📱</div>
+        </div>
+        <div class="video-card">
+            <video src="{{ url_for('static', filename='assets/videos/3.mp4') }}" loop playsinline></video>
+            <div class="video-label">Contenu Réseaux Sociaux 📱</div>
+        </div>
+        <div class="video-card">
+            <video src="{{ url_for('static', filename='assets/videos/4.mp4') }}" loop playsinline></video>
+            <div class="video-label">Contenu Réseaux Sociaux 📱</div>
+        </div>
+        <div class="video-card">
+            <video src="{{ url_for('static', filename='assets/videos/5.mp4') }}" loop playsinline></video>
+            <div class="video-label">Contenu Réseaux Sociaux 📱</div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

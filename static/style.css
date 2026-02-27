@@ -1,0 +1,151 @@
+/* --- CONFIGURATION GÉNÉRALE --- */
+* {
+    box-sizing: border-box; /* Important pour les calculs de taille */
+}
+
+body {
+    background-color: #0e0e0e; /* Noir profond */
+    color: white;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    margin: 0;
+    overflow: hidden; /* Empêche le scroll de toute la page, seul le feed scrollera */
+    height: 100vh;
+    display: flex;
+    justify-content: center; /* Centre le feed au milieu */
+}
+
+/* --- LE FLUX CENTRAL (LE FEED) --- */
+#feed {
+    width: 100%;
+    max-width: 420px; /* Largeur d'un gros smartphone */
+    height: 100vh; /* Prend toute la hauteur de l'écran */
+    overflow-y: scroll; /* Active le scroll vertical uniquement ici */
+    scroll-snap-type: y mandatory; /* Active l'effet magnétique "Reels" */
+    
+    /* Cache la barre de défilement pour faire plus propre */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    padding: 20px 0; /* Un peu d'espace haut/bas */
+}
+
+#feed::-webkit-scrollbar { 
+    display: none; /* Chrome/Safari */
+}
+
+/* --- LA CARTE VIDÉO (Le cadre) --- */
+.video-card {
+    position: relative;
+    width: 100%;
+    height: 85vh; /* La vidéo prend 85% de la hauteur de l'écran */
+    margin: 0 auto 30px auto; /* Centré avec espace en bas */
+    
+    border-radius: 20px; /* Coins arrondis modernes */
+    overflow: hidden;
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0,0,0, 0.5); /* Ombre portée pour le relief */
+    border: 1px solid #333;
+    
+    scroll-snap-align: center; /* C'est ici que le scroll s'arrête net */
+}
+
+/* --- LA VIDÉO ELLE-MÊME --- */
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Remplir tout le cadre sans déformer (zoome si besoin) */
+    display: block;
+}
+
+/* --- LE TEXTE SUR LA VIDÉO (Overlay) --- */
+.video-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); /* Dégradé pour lisibilité */
+    font-size: 1rem;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    pointer-events: none; /* Permet de cliquer à travers sur la vidéo */
+}
+
+/* --- LES PANNEAUX FIXES (GAUCHE & DROITE) --- */
+/* On s'assure qu'ils restent au-dessus et ne bougent pas */
+
+#status {
+    position: fixed;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%); /* Centré verticalement à droite */
+    background: rgba(20, 20, 20, 0.9);
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #333;
+    backdrop-filter: blur(10px); /* Effet verre dépoli */
+    width: 220px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.sensor-box { display: flex; flex-direction: column; align-items: center; }
+.label-tech { font-size: 0.65rem; color: #888; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 5px; }
+.sensor-val { font-size: 2.2rem; font-weight: 700; font-family: monospace; }
+
+#graphs-container {
+    position: fixed;
+    top: 50%;
+    left: 40px;
+    transform: translateY(-50%); /* Centré verticalement à gauche */
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;
+    z-index: 100;
+    width: 380px; 
+}
+
+.graph-box {
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid #333;
+    border-radius: 12px;
+    height: 150px;
+    padding: 10px;
+    position: relative;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* --- BOUTON ET OVERLAY DE DÉPART --- */
+#overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+}
+
+button {
+    padding: 18px 40px;
+    background: #00ff88;
+    color: black;
+    border: none;
+    font-weight: 800;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 50px; /* Bouton pilule */
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
+}
