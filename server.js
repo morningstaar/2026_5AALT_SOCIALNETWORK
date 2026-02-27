@@ -6,7 +6,6 @@ const io = require('socket.io')(http, { cors: { origin: "*" } });
 io.on('connection', (socket) => {
     console.log('Un appareil est connecté');
     
-    // Relais : Reçoit de Python -> Envoie au HTML
     socket.on('sensor_data', (data) => {
         socket.broadcast.emit('sensor_data', data);
     });
