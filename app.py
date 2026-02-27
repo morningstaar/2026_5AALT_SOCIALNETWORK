@@ -4,7 +4,7 @@ import threading
 from flask import Flask, render_template
 from flask_socketio import SocketIO
 
-# --- 1. DÉTECTION OS & PLUX ---
+
 osDic = {
     "Darwin": f"MacOS/Intel{''.join(platform.python_version().split('.')[:2])}",
     "Linux": "Linux64",
@@ -28,7 +28,7 @@ sys.path.append(f"PLUX-API-Python3/{osDic[platform.system()]}")
 try:
     import plux
 except ImportError:
-    print("❌ Erreur : API PLUX introuvable.")
+    print(" Erreur : API PLUX introuvable.")
 
 # --- 2. CONFIGURATION WEB (FLASK) ---
 app = Flask(__name__)
@@ -50,10 +50,10 @@ def run_bitalino():
     try:
         device = RealTimeDevice(address)
         device.start(1000, [1, 2, 3, 4, 5, 6], 16)
-        print(f"✅ BITalino connecté. Envoi web en cours...")
+        print(f" BITalino connecté. Envoi web en cours...")
         device.loop()
     except Exception as e:
-        print(f"❌ Erreur BITalino : {e}")
+        print(f" Erreur BITalino : {e}")
 
 @app.route('/')
 def index():
