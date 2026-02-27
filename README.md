@@ -1,4 +1,4 @@
-# Biofeedback Social Feed : Interface de Régulation Physiologique
+# Bioblur : Interface de Régulation Physiologique
 
 Ce projet est un prototype de recherche explorant l'interaction entre la consommation de contenus numériques (type TikTok/Reels) et les **changements physiologiques** de l'utilisateur. En utilisant un capteur **BITalino**, le système ajuste la clarté visuelle du flux vidéo en temps réel selon le niveau d'activation du système nerveux autonome détecté.
 
@@ -26,7 +26,7 @@ L'architecture est structurée en trois couches distinctes :
 * **Monitoring** : Tracé des signaux en temps réel via Chart.js.
 * **Traitement du Rythme Cardiaque** : Le BPM est calculé sur une moyenne glissante des 8 derniers battements pour stabiliser l'affichage.
 * **Référence Glissante** : Un filtre passe-haut s'adapte en continu (adaptation en environ 3 secondes), permettant au score de revenir à zéro dès que l'état physiologique se stabilise.
-* **Expérience Utilisateur** : Système de scroll imitant les réseaux sociaux avec "Scroll Snapping" et un "IntersectionObserver" pour n'activer que la vidéo centrale.
+* **Expérience Utilisateur** : Système de scroll imitant les réseaux sociaux.
 
 ## Algorithme de Biofeedback
 La variable pilote est l'**Indice d'Instabilité Globale** (courbe orange). 
